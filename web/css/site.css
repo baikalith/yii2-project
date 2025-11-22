@@ -1,88 +1,80 @@
-main > .container {
-    padding: 70px 15px 20px;
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #222;
+    background: linear-gradient(120deg, #8fd3f4 0%, #a18cd1 100%);
 }
 
-.footer {
-    background-color: #f5f5f5;
-    font-size: .9em;
-    height: 60px;
+/* Многоуровневый градиент для шапки */
+.navbar.bg-dark {
+    background: linear-gradient(90deg, rgba(230,230,230,0.95) 0%, rgba(192,192,200,0.98) 100%);
+    backdrop-filter: blur(8px);
+    color: #222 !important;
+    box-shadow: 0 8px 32px 0 rgba(31,38,135,0.10);
+    border-radius: 22px;
+    margin-top: 36px;
+    margin-bottom: 38px;
+    border: 1.5px solid #ececec;
+    transition: box-shadow 0.25s;
+    animation: fadeHeader 0.7s;
 }
 
-.footer > .container {
-    padding-right: 15px;
-    padding-left: 15px;
+/* Эффект акцентного свечения при наведении */
+.navbar.bg-dark:hover, .navbar.bg-dark:focus {
+    box-shadow: 0 8px 38px 0 rgba(135,122,240,0.22);
 }
 
-.not-set {
-    color: #c55;
-    font-style: italic;
+/* Контрастный чёрный текст и меню */
+.navbar .navbar-brand,
+.navbar .navbar-nav .nav-link {
+    color: #222 !important;
+    font-weight: 600;
+    font-size: 1.17rem;
+    letter-spacing: 1px;
+    text-shadow: 0 1px 4px #fff7;
+    transition: color 0.2s;
 }
 
-/* add sorting icons to gridview sort links */
-a.asc:after, a.desc:after {
-    content: '';
-    left: 3px;
-    display: inline-block;
-    width: 0;
-    height: 0;
-    border: solid 5px transparent;
-    margin: 4px 4px 2px 4px;
-    background: transparent;
+.navbar .navbar-nav .nav-link:hover {
+    color: #7b2ff2 !important;
 }
 
-a.asc:after {
-    border-bottom: solid 7px #212529;
-    border-top-width: 0;
+/* Красивое появление шапки */
+@keyframes fadeHeader {
+    0% { opacity: 0; transform: translateY(-30px) scale(0.97);}
+    60% { opacity: 1; transform: translateY(6px) scale(1.02);}
+    100% { opacity: 1; transform: translateY(0) scale(1);}
 }
 
-a.desc:after {
-    border-top: solid 7px #212529;
-    border-bottom-width: 0;
+/* Стиль контейнера */
+.container {
+    background: rgba(255,255,255,0.88);
+    border-radius: 16px;
+    box-shadow: 0 3px 16px rgba(0,0,0,0.09);
+    padding: 32px 24px;
+    max-width: 950px;
+    margin: 0 auto;
 }
 
-.grid-view th {
-    white-space: nowrap;
+/* Красивые заголовки */
+h1, h2, h3 {
+    text-align: center;
+    color: #222;
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin-bottom: 22px;
+    text-shadow: 0 2px 18px #cdb4f6, 0 1px 6px #fff7;
 }
 
-.hint-block {
-    display: block;
-    margin-top: 5px;
-    color: #999;
-}
-
-.error-summary {
-    color: #a94442;
-    background: #fdf7f7;
-    border-left: 3px solid #eed3d7;
-    padding: 10px 20px;
-    margin: 0 0 15px 0;
-}
-
-/* align the logout "link" (button in form) of the navbar */
-.nav li > form > button.logout {
-    padding-top: 7px;
-    color: rgba(255, 255, 255, 0.5);
-}
-
-@media(max-width:767px) {
-    .nav li > form > button.logout {
-        display:block;
-        text-align: left;
-        width: 100%;
-        padding: 10px 0;
-    }
-}
-
-.nav > li > form > button.logout:focus,
-.nav > li > form > button.logout:hover {
+/* Ссылки в основном приглушённые, при наведении цветные */
+a {
+    color: #555;
     text-decoration: none;
-    color: rgba(255, 255, 255, 0.75);
+    border-bottom: 1.5px solid #eee;
+    transition: color 0.22s, border-color 0.22s;
 }
-
-.nav > li > form > button.logout:focus {
-    outline: none;
-}
-
-.form-group {
-    margin-bottom: 1rem;
+a:hover {
+    color: #7b2ff2;
+    border-color: #7b2ff2;
 }

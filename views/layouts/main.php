@@ -15,10 +15,14 @@ BootstrapAsset::register($this);
 <html lang="<?= Yii::$app->language ?>" class="h-100">
 <head>
     <meta charset="<?= Yii::$app->charset ?>">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <?php $this->registerCsrfMetaTags() ?>
-    <title><?= Html::encode($this->title ?? 'Информационная система проектной организации') ?></title>
+    <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
+
+    <!-- Подключаем наш кастомный CSS -->
+    <?= Html::cssFile('@web/css/site.css') ?>
+
 </head>
 <body class="d-flex flex-column h-100">
 <?php $this->beginBody() ?>
