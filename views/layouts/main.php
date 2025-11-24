@@ -30,7 +30,7 @@ BootstrapAsset::register($this);
 <header>
 <?php
 NavBar::begin([
-    'brandLabel' => Yii::$app->name,
+    'brandLabel' => 'ИСПО',
     'brandUrl' => Yii::$app->homeUrl,
     'options' => [
         'class' => 'navbar navbar-expand-lg navbar-dark bg-dark',
@@ -44,11 +44,11 @@ echo Nav::widget([
         ['label' => 'Контакты', 'url' => ['/site/contacts']],
         ['label' => 'Логин и регистрация', 'url' => ['/site/login']],
         ['label' => 'Данные', 'items' => [
-            ['label' => 'Организации', 'url' => ['/site/clients']],
-            ['label' => 'Договоры', 'url' => ['/site/contracts']],
-            ['label' => 'Проектные работы', 'url' => ['/site/projects']],
-            ['label' => 'Отделы', 'url' => ['/site/departments']],
-            ['label' => 'Сотрудники', 'url' => ['/site/employees']],
+            ['label' => 'Организации', 'url' => ['/clients/index']],
+            ['label' => 'Договоры', 'url' => ['contracts/index']],
+            ['label' => 'Проектные работы', 'url' => ['projects/index']],
+            ['label' => 'Отделы', 'url' => ['/departments/index']],
+            ['label' => 'Сотрудники', 'url' => ['employees/index']],
         ]],
     ],
 ]);
