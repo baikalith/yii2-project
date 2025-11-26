@@ -1,25 +1,27 @@
 <?php
 $this->title = 'Контактная информация';
 ?>
-<div class="site-contacts d-flex justify-content-center align-items-center" style="min-height:70vh">
+<div class="contacts-row">
+    <div class="contact-card blue">
+        <img src="/images/company-logo.png" alt="ISPO" class="logo">
+        <h2 class="contact-title">Контактная информация</h2>
+        <div class="text-secondary small mb-3">Проектная организация «СтройПроект»</div>
+        <div><b>Адрес:</b> г. Усолье-Сибирское, ул. Сеченова, д. 15</div>
+        <div><b>Телефон:</b> +7 (908) 774-87-86</div>
+        <div><b>Email:</b> baikalith@mail.ru</div>
+        <div><b>Режим работы:</b> пн–пт, 9:00–18:00</div>
+        <button onclick="history.back()" class="btn btn-outline-primary mt-3">Назад</button>
+    </div>
 
-    <div class="card shadow rounded p-4" style="max-width:480px; width:100%">
-        <div class="text-center mb-4">
-            <!-- Можно поставить свой логотип или изображение -->
-            <img src="/images/company-logo.png" alt="Логотип компании" height="64" class="mb-2" style="border-radius:12px;">
-            <h2 class="mb-2 text-primary"><?= $this->title ?></h2>
-            <p class="text-secondary small">Проектная организация «СтройПроект»</p>
-        </div>
-        <div class="mb-2"><b>Адрес:</b> г. Москва, ул. Проектировщиков, д. 15</div>
-        <div class="mb-2"><b>Телефон:</b> <a href="tel:+74951234567" class="text-dark text-decoration-none">+7 (495) 123-45-67</a></div>
-        <div class="mb-2"><b>Email:</b> <a href="mailto:info@project-org.ru" class="text-dark text-decoration-none">info@project-org.ru</a></div>
-        <div class="mb-2"><b>Режим работы:</b> пн–пт, 9:00–18:00</div>
-        <hr>
-        <div class="text-center mt-2">
-            <a href="javascript:history.back()" class="btn btn-outline-primary">
-                <i class="bi bi-arrow-left"></i> Назад
-            </a>
-        </div>
+    <div class="contact-card red">
+        <img src="/images/college-logo.png" alt="Техникум" class="logo">
+        <h2 class="contact-title">Контактная информация</h2>
+        <div class="text-secondary small mb-3">Учебный техникум</div>
+        <div><b>Адрес:</b> г. Ангарск,  52-й кв-л, 1</div>
+        <div><b>Телефон:</b> +7 (395) 552-20-60</div>
+        <div><b>Email:</b> apt@mail.ru</div>
+        <div><b>Сайт:</b> <a href="http://www.aptangarsk.ru/" target="_blank">http://www.aptangarsk.ru/</a></div>
+        <button onclick="history.back()" class="btn btn-outline-danger mt-3">Назад</button>
     </div>
 
 </div>

@@ -5,7 +5,6 @@ body {
     color: #222;
     background: linear-gradient(120deg, #8fd3f4 0%, #a18cd1 100%);
 }
-
 /* Многоуровневый градиент для шапки */
 .navbar.bg-dark {
     background: linear-gradient(90deg, rgba(230,230,230,0.95) 0%, rgba(192,192,200,0.98) 100%);
@@ -77,4 +76,47 @@ a {
 a:hover {
     color: #7b2ff2;
     border-color: #7b2ff2;
+}
+.logo {
+    display: block;
+    margin: 0 auto 16px auto;
+    transition: transform 0.18s cubic-bezier(.62,-0.2,.35,1.25);
+    will-change: transform;
+}
+
+.logo:hover, .logo:focus {
+    transform: translateY(-12px);
+}
+.contacts-row {
+    display: flex;
+    gap: 32px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 40px;
+}
+.contact-card {
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 6px 24px rgba(40,90,240,0.10);
+    padding: 32px 30px 32px 30px;
+    max-width: 340px;
+    min-width: 250px;
+    text-align: center;
+}
+.contact-card .logo {
+    height: 110px;
+    margin-bottom: 18px;
+    transition: transform 0.18s cubic-bezier(.62,-0.2,.35,1.25);
+}
+.contact-card .logo:hover, .contact-card .logo:focus {
+    transform: translateY(-12px);
+}
+
+/* Синий стиль */
+.contact-card.blue .contact-title {
+    color: #2290ea;
+}
+/* Красный стиль */
+.contact-card.red .contact-title {
+    color: #e42130;
 }
