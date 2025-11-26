@@ -1,4 +1,5 @@
 <?php
+
 use app\models\Employees;
 use yii\helpers\Html;
 use yii\helpers\Url;
@@ -9,18 +10,15 @@ $this->title = 'Сотрудники';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="employees-index">
-
     <h1><?= Html::encode($this->title) ?></h1>
-
     <p>
         <?= Html::a('Добавить сотрудника', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
-
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
+        'summary' => '',
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
             'id',
             [
                 'attribute' => 'full_name',
@@ -32,11 +30,19 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             [
                 'attribute' => 'department_id',
-                'label' => 'Отдел (ID)'
+                'label' => 'Номер отдела'
             ],
             [
                 'attribute' => 'gender',
                 'label' => 'Пол'
+            ],
+            [
+                'attribute' => 'address',
+                'label' => 'Адрес'
+            ],
+            [
+                'attribute' => 'birth_date',
+                'label' => 'Дата рождения'
             ],
             [
                 'class' => ActionColumn::className(),
@@ -46,5 +52,4 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
         ],
     ]); ?>
-
 </div>

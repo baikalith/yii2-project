@@ -1,4 +1,5 @@
 <?php
+
 use app\models\Projects;
 use yii\helpers\Html;
 use yii\helpers\Url;
@@ -9,18 +10,15 @@ $this->title = 'Проекты';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="projects-index">
-
     <h1><?= Html::encode($this->title) ?></h1>
-
     <p>
         <?= Html::a('Добавить проект', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
-
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
+        'summary' => '',
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
             'id',
             [
                 'attribute' => 'start_date',
@@ -46,5 +44,4 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
         ],
     ]); ?>
-
 </div>

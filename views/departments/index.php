@@ -1,4 +1,5 @@
 <?php
+
 use app\models\Departments;
 use yii\helpers\Html;
 use yii\helpers\Url;
@@ -9,18 +10,15 @@ $this->title = 'Отделы';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="departments-index">
-
     <h1><?= Html::encode($this->title) ?></h1>
-
     <p>
         <?= Html::a('Добавить отдел', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
-
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
+        'summary' => '',
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
             'id',
             [
                 'attribute' => 'name',
@@ -36,7 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             [
                 'attribute' => 'head_id',
-                'label' => 'Начальник (ID)'
+                'label' => 'ID начальника'
             ],
             [
                 'class' => ActionColumn::className(),
@@ -46,5 +44,4 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
         ],
     ]); ?>
-
 </div>

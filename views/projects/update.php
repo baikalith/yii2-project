@@ -2,13 +2,9 @@
 
 use yii\helpers\Html;
 
-/** @var yii\web\View $this */
-/** @var app\models\Projects $model */
-
-$this->title = 'Update Projects: ' . $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Projects', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'Update';
+$this->title = 'Изменить проект: ' . $model->id;
+$this->params['breadcrumbs'][] = ['label' => 'Проекты', 'url' => ['index']];
+$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="projects-update">
 
