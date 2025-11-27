@@ -42,14 +42,24 @@ echo Nav::widget([
     'items' => [
         ['label' => 'Главная', 'url' => ['/site/index']],
         ['label' => 'Контакты', 'url' => ['/site/contacts']],
-        ['label' => 'Логин и регистрация', 'url' => ['/site/login']],
-        ['label' => 'Данные', 'items' => [
-            ['label' => 'Организации', 'url' => ['/clients/index']],
-            ['label' => 'Договоры', 'url' => ['contracts/index']],
-            ['label' => 'Проектные работы', 'url' => ['projects/index']],
-            ['label' => 'Отделы', 'url' => ['/departments/index']],
-            ['label' => 'Сотрудники', 'url' => ['employees/index']],
-        ]],
+
+        // Меню "Данные" видно только после входа (user и admin)
+        !Yii::$app->user->isGuest
+            ? ['label' => 'Данные', 'items' => [
+                ['label' => 'Организации', 'url' => ['/clients/index']],
+                ['label' => 'Договоры', 'url' => ['/contracts/index']],
+                ['label' => 'Проектные работы', 'url' => ['/projects/index']],
+                ['label' => 'Отделы', 'url' => ['/departments/index']],
+                ['label' => 'Сотрудники', 'url' => ['/employees/index']],
+            ]]
+            : '',
+
+        // Войти / Выйти
+        Yii::$app->user->isGuest
+            ? ['label' => 'Войти', 'url' => ['/site/login']]
+            : ['label' => 'Выйти (' . Yii::$app->user->identity->username . ')',
+               'url' => ['/site/logout'],
+               'linkOptions' => ['data-method' => 'post']],
     ],
 ]);
 

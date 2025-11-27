@@ -3,24 +3,29 @@
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 
-$this->title = $model->contract_number;
+/* @var $this yii\web\View */
+/* @var $model app\models\Contracts */
+
+$this->title = 'Договор № ' . $model->contract_number;
 $this->params['breadcrumbs'][] = ['label' => 'Договоры', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="contracts-view">
+<div class="contract-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>
-        <?= Html::a('Изменить', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Удалить', ['delete', 'id' => $model->id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => 'Вы действительно хотите удалить?',
-                'method' => 'post',
-            ],
-        ]) ?>
-    </p>
+    <?php if (!Yii::$app->user->isGuest && Yii::$app->user->identity->role === 'admin'): ?>
+        <p>
+            <?= Html::a('Изменить', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+            <?= Html::a('Удалить', ['delete', 'id' => $model->id], [
+                'class' => 'btn btn-danger',
+                'data' => [
+                    'confirm' => 'Вы действительно хотите удалить этот договор?',
+                    'method' => 'post',
+                ],
+            ]) ?>
+        </p>
+    <?php endif; ?>
 
     <?= DetailView::widget([
         'model' => $model,
@@ -28,19 +33,19 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             [
                 'attribute' => 'contract_number',
-                'label' => 'Номер договора'
+                'label' => 'Номер договора',
             ],
             [
                 'attribute' => 'sign_date',
-                'label' => 'Дата подписания'
+                'label' => 'Дата подписания',
             ],
             [
                 'attribute' => 'client_id',
-                'label' => 'Клиент (ID)'
+                'label' => 'ID клиента',
             ],
             [
                 'attribute' => 'amount',
-                'label' => 'Сумма'
+                'label' => 'Сумма',
             ],
         ],
     ]) ?>
