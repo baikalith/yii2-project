@@ -18,7 +18,6 @@ class SiteController extends Controller
     public function behaviors()
     {
         return [
-            // доступ к logout только для залогиненных и только POST
             'access' => [
                 'class' => AccessControl::class,
                 'only' => ['logout'],
@@ -62,8 +61,6 @@ class SiteController extends Controller
         return $this->render('contacts');
     }
 
-    /* ---------- ЛОГИН / ЛОГАУТ ---------- */
-
     public function actionLogin()
     {
         if (!Yii::$app->user->isGuest) {
@@ -87,8 +84,6 @@ class SiteController extends Controller
         Yii::$app->user->logout();
         return $this->goHome();
     }
-
-    /* ---------- ТВОИ СТАРЫЕ ACTION'ы ---------- */
 
     public function actionDepartments()
     {

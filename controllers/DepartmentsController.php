@@ -4,7 +4,6 @@ namespace app\controllers;
 
 use Yii;
 use app\models\Department;
-use app\models\DepartmentSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -22,7 +21,7 @@ class DepartmentsController extends Controller
                     [
                         'allow' => true,
                         'actions' => ['index', 'view'],
-                        'roles' => ['@'],
+                        'roles' => ['@'], // user и admin смотрят
                     ],
                     [
                         'allow' => true,
@@ -46,12 +45,10 @@ class DepartmentsController extends Controller
 
     public function actionIndex()
     {
-        $searchModel = new DepartmentSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $departments = Department::find()->all();
 
         return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
+            'departments' => $departments,
         ]);
     }
 

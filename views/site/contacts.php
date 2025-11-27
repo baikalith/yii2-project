@@ -10,7 +10,7 @@ $this->title = 'Контактная информация';
         <div><b>Телефон:</b> +7 (908) 774-87-86</div>
         <div><b>Email:</b> baikalith@mail.ru</div>
         <div><b>Режим работы:</b> пн–пт, 9:00–18:00</div>
-        <button onclick="history.back()" class="btn btn-outline-primary mt-3">Назад</button>
+    
     </div>
 
     <div class="contact-card red">
@@ -21,7 +21,7 @@ $this->title = 'Контактная информация';
         <div><b>Телефон:</b> +7 (395) 552-20-60</div>
         <div><b>Email:</b> apt@mail.ru</div>
         <div><b>Сайт:</b> <a href="http://www.aptangarsk.ru/" target="_blank">http://www.aptangarsk.ru/</a></div>
-        <button onclick="history.back()" class="btn btn-outline-danger mt-3">Назад</button>
+
     </div>
 
 </div>

@@ -1,40 +1,46 @@
 <?php
-$this->title = 'ИСПО – Информационная система проектной организации';
+
+use yii\helpers\Html;
+
+/* @var $this yii\web\View */
+
+$this->title = 'ИСПО';
 ?>
 <div class="site-index">
 
-    <div class="jumbotron text-center bg-light">
+    <div class="jumbotron text-center bg-transparent mt-5 mb-5">
         <h1 class="display-4">Добро пожаловать в ИСПО!</h1>
-        <p class="lead mt-3 mb-4">Ваша современная система для управления проектами, договорами, отделами и сотрудниками.</p>
-        <p>Быстро ищите информацию, управляйте бизнес-процессами и находите нужные связи между всеми элементами вашей организации.</p>
-        <?= yii\helpers\Html::a('Перейти к данным', ['departments/index'], ['class' => 'btn btn-success btn-lg']) ?>
+        <p class="lead">
+            Ваша система управления проектами, договорами, отделами и сотрудниками.
+        </p>
+
+        <?php if (Yii::$app->user->isGuest): ?>
+            <p class="mt-4">
+                Чтобы увидеть данные, необходимо авторизироваться.
+            </p>
+            <p>
+                <?= Html::a('Войти', ['site/login'], ['class' => 'btn btn-primary btn-lg']) ?>
+            </p>
+        <?php else: ?>
+            <p class="mt-4">
+                <?= Html::a('Перейти к данным', ['/clients/index'], ['class' => 'btn btn-success btn-lg']) ?>
+            </p>
+        <?php endif; ?>
     </div>
 
-    <div class="row mt-4">
-        <div class="col-md-6">
-            <div class="card mb-3">
-                <div class="card-header bg-success text-white">Для пользователей</div>
-                <div class="card-body">
-                    <ul>
-                        <li>Контакты руководства</li>
-                        <li>Логин и регистрация</li>
-                    </ul>
-                </div>
-            </div>
+    <div class="row mt-5 mb-5">
+        <div class="col-md-6 text-center">
+            <?= Html::img('@web/images/construction1.jpg', [
+                'alt' => 'Строительная площадка 1',
+                'class' => 'img-equal',
+            ]) ?>
         </div>
-        <div class="col-md-6">
-            <div class="card mb-3">
-                <div class="card-header bg-primary text-white">Просмотр данных</div>
-                <div class="card-body">
-                    <ul>
-                        <li>Отделы и сотрудники</li>
-                        <li>Договоры</li>
-                        <li>Проекты</li>
-                        <li>Клиенты</li>
-                        <li>Организации</li>
-                    </ul>
-                </div>
-            </div>
+        <div class="col-md-6 text-center">
+            <?= Html::img('@web/images/construction2.jpg', [
+                'alt' => 'Строительная площадка 2',
+                'class' => 'img-equal',
+            ]) ?>
         </div>
     </div>
+
 </div>

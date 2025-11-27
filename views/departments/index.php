@@ -1,47 +1,53 @@
 <?php
 
-use app\models\Departments;
 use yii\helpers\Html;
-use yii\helpers\Url;
-use yii\grid\ActionColumn;
-use yii\grid\GridView;
+
+/* @var $this yii\web\View */
+/* @var $departments app\models\Department[] */
 
 $this->title = 'Отделы';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="departments-index">
+<div class="department-index">
+
     <h1><?= Html::encode($this->title) ?></h1>
-    <p>
-        <?= Html::a('Добавить отдел', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
-    <?= GridView::widget([
-        'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-        'summary' => '',
-        'columns' => [
-            'id',
-            [
-                'attribute' => 'name',
-                'label' => 'Название отдела'
-            ],
-            [
-                'attribute' => 'floor',
-                'label' => 'Этаж'
-            ],
-            [
-                'attribute' => 'phone',
-                'label' => 'Телефон'
-            ],
-            [
-                'attribute' => 'head_id',
-                'label' => 'ID начальника'
-            ],
-            [
-                'class' => ActionColumn::className(),
-                'urlCreator' => function ($action, Departments $model, $key, $index, $column) {
-                    return Url::toRoute([$action, 'id' => $model->id]);
-                }
-            ],
-        ],
-    ]); ?>
+
+    <?php if (!Yii::$app->user->isGuest && Yii::$app->user->identity->role === 'admin'): ?>
+        <p>
+            <?= Html::a('Добавить отдел', ['create'], ['class' => 'btn btn-success']) ?>
+        </p>
+    <?php endif; ?>
+
+    <table class="table table-striped table-bordered">
+        <tr>
+            <th>ID</th>
+            <th>Название</th>
+            <th>Этаж</th>
+            <th>Телефон</th>
+            <th>ID начальника</th>
+            <th></th>
+        </tr>
+        <?php foreach ($departments as $department): ?>
+            <tr>
+                <td><?= $department->id ?></td>
+                <td><?= Html::encode($department->name) ?></td>
+                <td><?= Html::encode($department->floor) ?></td>
+                <td><?= Html::encode($department->phone) ?></td>
+                <td><?= Html::encode($department->head_id) ?></td>
+                <td>
+                    <?= Html::a('👁', ['view', 'id' => $department->id], ['title' => 'Просмотр']) ?>
+                    <?php if (!Yii::$app->user->isGuest && Yii::$app->user->identity->role === 'admin'): ?>
+                        <?= Html::a('✏', ['update', 'id' => $department->id], ['title' => 'Редактировать']) ?>
+                        <?= Html::a('🗑', ['delete', 'id' => $department->id], [
+                            'title' => 'Удалить',
+                            'data' => [
+                                'confirm' => 'Удалить этот отдел?',
+                                'method' => 'post',
+                            ],
+                        ]) ?>
+                    <?php endif; ?>
+                </td>
+            </tr>
+        <?php endforeach; ?>
+    </table>
 </div>

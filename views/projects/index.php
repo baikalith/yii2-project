@@ -1,46 +1,59 @@
 <?php
 
-use app\models\Projects;
+use app\models\Project;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\grid\ActionColumn;
 use yii\grid\GridView;
 
+/* @var $this yii\web\View */
+/* @var $searchModel app\models\ProjectSearch */
+/* @var $dataProvider yii\data\ActiveDataProvider */
+
 $this->title = 'Проекты';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="projects-index">
+<div class="project-index">
+
     <h1><?= Html::encode($this->title) ?></h1>
-    <p>
-        <?= Html::a('Добавить проект', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
+
+    <?php if (!Yii::$app->user->isGuest && Yii::$app->user->identity->role === 'admin'): ?>
+        <p>
+            <?= Html::a('Добавить проект', ['create'], ['class' => 'btn btn-success']) ?>
+        </p>
+    <?php endif; ?>
+
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-        'summary' => '',
+        'filterModel'  => $searchModel,
+        'summary'      => '',
         'columns' => [
             'id',
             [
                 'attribute' => 'start_date',
-                'label' => 'Дата начала'
+                'label' => 'Дата начала',
             ],
             [
                 'attribute' => 'end_date',
-                'label' => 'Дата окончания'
+                'label' => 'Дата окончания',
             ],
             [
                 'attribute' => 'contract_id',
-                'label' => 'Договор (ID)'
+                'label' => 'ID договора',
             ],
             [
                 'attribute' => 'department_id',
-                'label' => 'Отдел (ID)'
+                'label' => 'ID отдела',
             ],
             [
                 'class' => ActionColumn::className(),
-                'urlCreator' => function ($action, Projects $model, $key, $index, $column) {
+                'template' => !Yii::$app->user->isGuest
+                    && Yii::$app->user->identity->role === 'admin'
+                        ? '{view} {update} {delete}'
+                        : '{view}',
+                'urlCreator' => function ($action, $model, $key, $index, $column) {
                     return Url::toRoute([$action, 'id' => $model->id]);
-                }
+                },
             ],
         ],
     ]); ?>

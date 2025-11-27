@@ -1,122 +1,158 @@
+/* Базовый фон и текст */
 body {
     margin: 0;
     min-height: 100vh;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: #222;
-    background: linear-gradient(120deg, #8fd3f4 0%, #a18cd1 100%);
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    color: #111827;
+    background: radial-gradient(circle at top left, #8fd3f4 0%, #a18cd1 35%, #111827 100%);
+    background-attachment: fixed;
 }
-/* Многоуровневый градиент для шапки */
+
+/* Полупрозрачная "стеклянная" шапка с анимацией */
 .navbar.bg-dark {
-    background: linear-gradient(90deg, rgba(230,230,230,0.95) 0%, rgba(192,192,200,0.98) 100%);
-    backdrop-filter: blur(8px);
-    color: #222 !important;
-    box-shadow: 0 8px 32px 0 rgba(31,38,135,0.10);
+    background: linear-gradient(90deg, rgba(255,255,255,0.92) 0%, rgba(229,231,235,0.96) 100%);
+    backdrop-filter: blur(12px);
+    color: #111827 !important;
+    box-shadow: 0 12px 40px rgba(15,23,42,0.25);
     border-radius: 22px;
-    margin-top: 36px;
-    margin-bottom: 38px;
-    border: 1.5px solid #ececec;
-    transition: box-shadow 0.25s;
-    animation: fadeHeader 0.7s;
+    margin-top: 32px;
+    margin-bottom: 32px;
+    border: 1px solid rgba(148,163,184,0.35);
+    transition: box-shadow 0.3s ease, transform 0.25s ease;
+    animation: fadeHeader 0.7s ease-out;
 }
 
-/* Эффект акцентного свечения при наведении */
-.navbar.bg-dark:hover, .navbar.bg-dark:focus {
-    box-shadow: 0 8px 38px 0 rgba(135,122,240,0.22);
+.navbar.bg-dark:hover,
+.navbar.bg-dark:focus-within {
+    box-shadow: 0 18px 55px rgba(79,70,229,0.4);
+    transform: translateY(-1px);
 }
 
-/* Контрастный чёрный текст и меню */
+/* Текст / пункты меню */
 .navbar .navbar-brand,
 .navbar .navbar-nav .nav-link {
-    color: #222 !important;
+    color: #111827 !important;
     font-weight: 600;
-    font-size: 1.17rem;
-    letter-spacing: 1px;
-    text-shadow: 0 1px 4px #fff7;
-    transition: color 0.2s;
+    font-size: 1.05rem;
+    letter-spacing: 0.06em;
+    text-shadow: 0 1px 4px #ffffffaa;
+    transition: color 0.22s ease, transform 0.18s ease;
 }
 
 .navbar .navbar-nav .nav-link:hover {
-    color: #7b2ff2 !important;
+    color: #4f46e5 !important;
+    transform: translateY(-1px);
 }
 
-/* Красивое появление шапки */
+/* Анимация появления шапки */
 @keyframes fadeHeader {
-    0% { opacity: 0; transform: translateY(-30px) scale(0.97);}
-    60% { opacity: 1; transform: translateY(6px) scale(1.02);}
-    100% { opacity: 1; transform: translateY(0) scale(1);}
+    0%   { opacity: 0; transform: translateY(-26px) scale(0.97); }
+    60%  { opacity: 1; transform: translateY(4px)  scale(1.02); }
+    100% { opacity: 1; transform: translateY(0)   scale(1.0); }
 }
 
-/* Стиль контейнера */
+/* Основной контейнер контента */
 .container {
-    background: rgba(255,255,255,0.88);
-    border-radius: 16px;
-    box-shadow: 0 3px 16px rgba(0,0,0,0.09);
-    padding: 32px 24px;
-    max-width: 950px;
-    margin: 0 auto;
+    background: rgba(248,250,252,0.95);
+    border-radius: 18px;
+    box-shadow: 0 10px 30px rgba(15,23,42,0.20);
+    padding: 32px 26px;
+    max-width: 1000px;
+    margin: 0 auto 40px auto;
 }
 
-/* Красивые заголовки */
+/* Заголовки */
 h1, h2, h3 {
     text-align: center;
-    color: #222;
+    color: #0f172a;
     font-weight: 700;
-    letter-spacing: 2px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
     margin-bottom: 22px;
-    text-shadow: 0 2px 18px #cdb4f6, 0 1px 6px #fff7;
+    text-shadow: 0 2px 14px #c4b5fd, 0 1px 4px #ffffffaa;
 }
 
-/* Ссылки в основном приглушённые, при наведении цветные */
+/* Ссылки */
 a {
-    color: #555;
+    color: #4b5563;
     text-decoration: none;
-    border-bottom: 1.5px solid #eee;
-    transition: color 0.22s, border-color 0.22s;
+    border-bottom: 1.5px solid transparent;
+    transition: color 0.22s ease, border-color 0.22s ease;
 }
 a:hover {
-    color: #7b2ff2;
-    border-color: #7b2ff2;
+    color: #4f46e5;
+    border-color: #4f46e5;
 }
+
+/* Логотипы / картинки с "подпрыгиванием" */
 .logo {
     display: block;
     margin: 0 auto 16px auto;
-    transition: transform 0.18s cubic-bezier(.62,-0.2,.35,1.25);
+    transition: transform 0.2s cubic-bezier(.62,-0.2,.35,1.25), box-shadow 0.2s ease;
     will-change: transform;
 }
-
-.logo:hover, .logo:focus {
-    transform: translateY(-12px);
+.logo:hover,
+.logo:focus {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 16px 35px rgba(15,23,42,0.35);
 }
+
+/* Блоки контактов */
 .contacts-row {
     display: flex;
-    gap: 32px;
+    gap: 28px;
     justify-content: center;
     flex-wrap: wrap;
-    margin-top: 40px;
+    margin-top: 36px;
 }
+
 .contact-card {
-    background: #fff;
-    border-radius: 18px;
-    box-shadow: 0 6px 24px rgba(40,90,240,0.10);
-    padding: 32px 30px 32px 30px;
+    background: linear-gradient(145deg, #ffffff 0%, #f3f4ff 100%);
+    border-radius: 20px;
+    box-shadow: 0 12px 30px rgba(15,23,42,0.18);
+    padding: 28px 26px 26px 26px;
     max-width: 340px;
-    min-width: 250px;
+    min-width: 260px;
     text-align: center;
+    transition: transform 0.2s ease, box-shadow 0.25s ease;
 }
+
+.contact-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 18px 45px rgba(79,70,229,0.45);
+}
+
 .contact-card .logo {
     height: 110px;
     margin-bottom: 18px;
-    transition: transform 0.18s cubic-bezier(.62,-0.2,.35,1.25);
-}
-.contact-card .logo:hover, .contact-card .logo:focus {
-    transform: translateY(-12px);
 }
 
-/* Синий стиль */
-.contact-card.blue .contact-title {
-    color: #2290ea;
+/* Цветовые акценты карточек */
+.contact-card .contact-title {
+    font-weight: 700;
+    margin-bottom: 8px;
 }
-/* Красный стиль */
+
+.contact-card.blue .contact-title {
+    color: #2563eb;
+}
 .contact-card.red .contact-title {
-    color: #e42130;
+    color: #e11d48;
+}
+
+/* Картинки на главной */
+.img-equal {
+    width: 100%;
+    max-width: 400px;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 14px;
+    box-shadow: 0 12px 30px rgba(15,23,42,0.35);
+    transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
+}
+
+.img-equal:hover {
+    transform: translateY(-6px) scale(1.01);
+    box-shadow: 0 18px 45px rgba(56,189,248,0.5);
+    filter: saturate(1.1);
 }

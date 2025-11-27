@@ -3,24 +3,31 @@
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 
-$this->title = 'Отдел: ' . $model->name;
+/* @var $this yii\web\View */
+/* @var $model app\models\Department */
+
+$this->title = $model->name;
 $this->params['breadcrumbs'][] = ['label' => 'Отделы', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="departments-view">
+<div class="department-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
-
-    <p>
-        <?= Html::a('Изменить', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Удалить', ['delete', 'id' => $model->id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => 'Вы действительно хотите удалить?',
-                'method' => 'post',
-            ],
-        ]) ?>
-    </p>
+<p>
+    <?= Html::a('Назад к списку', ['index'], ['class' => 'btn btn-secondary']) ?>
+</p>
+    <?php if (!Yii::$app->user->isGuest && Yii::$app->user->identity->role === 'admin'): ?>
+        <p>
+            <?= Html::a('Изменить', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+            <?= Html::a('Удалить', ['delete', 'id' => $model->id], [
+                'class' => 'btn btn-danger',
+                'data' => [
+                    'confirm' => 'Вы действительно хотите удалить этот отдел?',
+                    'method' => 'post',
+                ],
+            ]) ?>
+        </p>
+    <?php endif; ?>
 
     <?= DetailView::widget([
         'model' => $model,
@@ -28,19 +35,19 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             [
                 'attribute' => 'name',
-                'label' => 'Название отдела'
+                'label' => 'Название',
             ],
             [
                 'attribute' => 'floor',
-                'label' => 'Этаж'
+                'label' => 'Этаж',
             ],
             [
                 'attribute' => 'phone',
-                'label' => 'Телефон'
+                'label' => 'Телефон',
             ],
             [
                 'attribute' => 'head_id',
-                'label' => 'ID начальника'
+                'label' => 'ID начальника',
             ],
         ],
     ]) ?>

@@ -1,6 +1,6 @@
 <?php
 
-/** @var \yii\web\View $this */
+/** @var \yii\web.View $this */
 /** @var string $content */
 
 use yii\bootstrap5\BootstrapAsset;
@@ -20,9 +20,7 @@ BootstrapAsset::register($this);
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
 
-    <!-- Подключаем наш кастомный CSS -->
     <?= Html::cssFile('@web/css/site.css') ?>
-
 </head>
 <body class="d-flex flex-column h-100">
 <?php $this->beginBody() ?>
@@ -37,13 +35,13 @@ NavBar::begin([
     ],
 ]);
 
+// ЛЕВОЕ МЕНЮ
 echo Nav::widget([
     'options' => ['class' => 'navbar-nav me-auto mb-2 mb-lg-0'],
     'items' => [
         ['label' => 'Главная', 'url' => ['/site/index']],
         ['label' => 'Контакты', 'url' => ['/site/contacts']],
 
-        // Меню "Данные" видно только после входа (user и admin)
         !Yii::$app->user->isGuest
             ? ['label' => 'Данные', 'items' => [
                 ['label' => 'Организации', 'url' => ['/clients/index']],
@@ -53,13 +51,24 @@ echo Nav::widget([
                 ['label' => 'Сотрудники', 'url' => ['/employees/index']],
             ]]
             : '',
+    ],
+]);
 
-        // Войти / Выйти
+// ПРАВОЕ МЕНЮ: Войти / Выйти
+echo Nav::widget([
+    'options' => ['class' => 'navbar-nav ms-auto mb-2 mb-lg-0'],
+    'encodeLabels' => false,
+    'items' => [
         Yii::$app->user->isGuest
             ? ['label' => 'Войти', 'url' => ['/site/login']]
-            : ['label' => 'Выйти (' . Yii::$app->user->identity->username . ')',
-               'url' => ['/site/logout'],
-               'linkOptions' => ['data-method' => 'post']],
+            : '<li class="nav-item">'
+                . Html::beginForm(['/site/logout'], 'post', ['class' => 'd-inline'])
+                . Html::submitButton(
+                    'Выйти (' . Yii::$app->user->identity->username . ')',
+                    ['class' => 'btn btn-link nav-link', 'style' => 'padding:0;']
+                )
+                . Html::endForm()
+              . '</li>',
     ],
 ]);
 
